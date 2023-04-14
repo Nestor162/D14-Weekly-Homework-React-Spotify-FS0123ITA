@@ -1,5 +1,7 @@
 /* BOTTOM PLAYER SECTION*/
-
+#cardPlaying {
+  background-color: transparent;
+}
 .bg-container {
   height: 5.5rem;
   background-color: #282828;
