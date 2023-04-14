@@ -10,8 +10,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/artist:artistId" element={<ArtistPage />} />
-          <Route path="/album:albumId" element={<AlbumPage />} />
+          <Route path="/artist/:artistId" element={<ArtistPage />} />
+          <Route path="/album/:albumId" element={<AlbumPage />} />
         </Routes>
       </BrowserRouter>
     </div>
