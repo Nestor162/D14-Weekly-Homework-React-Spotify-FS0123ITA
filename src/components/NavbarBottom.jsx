@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./NavbarBottom.css";
 import Play from "../img/playerbuttons/Play.png";
