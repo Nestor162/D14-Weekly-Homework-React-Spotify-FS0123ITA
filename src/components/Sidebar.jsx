@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
 import "./Sidebar.css";
 import logo from "../img/logo/Spotify_Logo.png";
 import { BookFill, HouseDoorFill } from "react-bootstrap-icons";
+import { setSearch, setQuery } from "../redux/reducers/searchReducer";
 
 function Sidebar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    dispatch(setSearch(true));
+    dispatch(setQuery(searchQuery));
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -50,6 +60,9 @@ function Sidebar() {
                           placeholder="Search"
                           aria-label="Search"
                           aria-describedby="basic-addon2"
+                          onChange={e => {
+                            setSearchQuery(e.target.value);
+                          }}
                         />
                         <div className="input-group-append" style={{ marginBottom: "4%" }}>
                           <Button
@@ -57,7 +70,9 @@ function Sidebar() {
                             className="btn-sm"
                             type="button"
                             id="button-addon1"
-                            onclick="search()"
+                            onClick={() => {
+                              clickHandler();
+                            }}
                           >
                             GO
                           </Button>

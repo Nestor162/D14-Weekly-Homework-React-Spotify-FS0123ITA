@@ -2,8 +2,11 @@ import React from "react";
 import "./MainContentHome.css";
 import { Col, Row } from "react-bootstrap";
 import HomeContent from "./HomeContent";
+import { useSelector } from "react-redux";
 
 function MainContentHome() {
+  const { search, searchQuery } = useSelector(state => state.search);
+
   return (
     <Col xs={12} md={9} className="offset-md-3 mainPage">
       <Row>
@@ -17,9 +20,11 @@ function MainContentHome() {
       </Row>
       <Row>
         <Col xs={10}>
-          <div id="searchResults" style={{ display: "none" }}>
-            <h2>Search Results</h2>
-            <Row className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" />
+          <div id="searchResults">
+            {search && <h2>Search Results</h2>}
+            <Row className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
+              {search && <HomeContent query={searchQuery} />}
+            </Row>
           </div>
         </Col>
       </Row>
