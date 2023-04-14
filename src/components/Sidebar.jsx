@@ -5,6 +5,7 @@ import "./Sidebar.css";
 import logo from "../img/logo/Spotify_Logo.png";
 import { BookFill, HouseDoorFill } from "react-bootstrap-icons";
 import { setSearch, setQuery } from "../redux/reducers/searchReducer";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,9 +23,11 @@ function Sidebar() {
         <Col xs={2}>
           <Navbar className="navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between" id="sidebar">
             <div className="nav-container">
-              <Navbar.Brand>
-                <img src={logo} alt="Spotify_Logo" width={131} height={40} />
-              </Navbar.Brand>
+              <Link to={"/"}>
+                <Navbar.Brand>
+                  <img src={logo} alt="Spotify_Logo" width={131} height={40} />
+                </Navbar.Brand>
+              </Link>
               <Button
                 className="navbar-toggler"
                 type="button"
@@ -40,10 +43,10 @@ function Sidebar() {
                 <div className="navbar-nav">
                   <ul>
                     <li>
-                      <a className="nav-item nav-link d-flex align-items-center" href="#home">
+                      <Link to={"/"} className="nav-item nav-link d-flex align-items-center">
                         <HouseDoorFill size={22} />
                         &nbsp; Home
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a className="nav-item nav-link" href="#library">
