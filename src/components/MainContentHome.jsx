@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainContentHome.css";
 import { Col, Row } from "react-bootstrap";
+import HomeContent from "./HomeContent";
 
 function MainContentHome() {
   return (
@@ -26,7 +27,9 @@ function MainContentHome() {
         <Col xs={10}>
           <div id="rock">
             <h2>Rock Classics</h2>
-            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection" />
+            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
+              <HomeContent query={"Gorillaz"} />
+            </Row>
           </div>
         </Col>
       </Row>
@@ -34,7 +37,9 @@ function MainContentHome() {
         <Col xs={10}>
           <div id="pop">
             <h2>Pop Culture</h2>
-            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection" />
+            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection">
+              <HomeContent query={"Bruno Mars"} />
+            </Row>
           </div>
         </Col>
       </Row>
@@ -42,7 +47,9 @@ function MainContentHome() {
         <Col xs={10}>
           <div id="hiphop">
             <h2>#HipHop</h2>
-            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="hipHopSection" />
+            <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="hipHopSection">
+              <HomeContent query={"Lilxnas"} />
+            </Row>
           </div>
         </Col>
       </Row>
