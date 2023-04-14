@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 function ArtistPage() {
+  const params = useParams();
+  const [artist, setArtist] = useState(null);
+
+  const fetchArtistContent = async () => {
+    try {
+      let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${params.artistId}`);
+
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        setArtist(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchArtistContent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Col xs={12} md={9} className="offset-md-3 mainPage">
       <Row className="mb-3">
@@ -15,15 +37,23 @@ function ArtistPage() {
       </Row>
       <Row>
         <Col xs={12} md={10} lg={10} className="mt-5">
-          <h2 className="titleMain">&nbsp;</h2>
-          <div id="followers"></div>
-          <div className="d-flex justify-content-center" id="button-container">
-            <Button className="btn-success mr-2 mainButton d-none" id="playButton">
-              PLAY
-            </Button>
-            <Button className="btn-outline-light mainButton d-none" id="followButton">
-              FOLLOW
-            </Button>
+          <div className="d-flex flex-column justify-content-center" id="button-container">
+            {artist && (
+              <>
+                <img className="mx-auto mb-3" src={artist.picture_big} alt={artist.name}></img>
+                <h2 class="titleMain">{artist.name}</h2>
+                <div id="followers">{artist.nb_fan} followers</div>
+              </>
+            )}
+
+            <div className="buttonsWrappers d-flex justify-content-center">
+              <Button className="btn-success me-2 mainButton" id="playButton">
+                PLAY
+              </Button>
+              <Button variant="outline-light" className="mainButton" id="followButton">
+                FOLLOW
+              </Button>
+            </div>
           </div>
         </Col>
       </Row>
