@@ -6,7 +6,7 @@ function HomeCardList({ song }) {
     <>
       {song.slice(0, 4).map((el, i) => {
         return (
-          <Col className="col text-center" id={i}>
+          <Col className="col text-center" key={el.id}>
             <a href="/album_page.html?id=51350192">
               <img className="img-fluid" src={el.album.cover_medium} alt={el.title} />
             </a>
