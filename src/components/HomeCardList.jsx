@@ -2,6 +2,7 @@ import React from "react";
 import { Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setPlay } from "../redux/reducers/playReducer";
+import { Link } from "react-router-dom";
 
 function HomeCardList({ song }) {
   const dispatch = useDispatch();
@@ -23,11 +24,9 @@ function HomeCardList({ song }) {
               }}
             />
             <p>
-              <a href="/album_page.html?id=51350192">
-                {el.album.title}
-                <br />
-              </a>
-              <a href="/artist_page.html?id=210">Artist: {el.artist.name}</a>
+              <Link to={`album/${el.album.id}`}>{el.album.title}</Link>
+              <br />
+              <Link to={`artist/${el.artist.id}`}>Artist: {el.artist.name}</Link>
             </p>
           </Col>
         );
