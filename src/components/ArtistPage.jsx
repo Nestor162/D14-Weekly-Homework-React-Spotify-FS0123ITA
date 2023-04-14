@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 function ArtistPage() {
   const params = useParams();
   const [artist, setArtist] = useState(null);
+  const [tracklist, setTracklist] = useState(null);
 
   const fetchArtistContent = async () => {
     try {
@@ -20,10 +21,32 @@ function ArtistPage() {
     }
   };
 
+  const fetchTracklilst = async trackList => {
+    try {
+      let response = await fetch(trackList);
+
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        setTracklist(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     fetchArtistContent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (artist) {
+      fetchTracklilst(artist.tracklist);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artist]);
+
   return (
     <Col xs={12} md={9} className="offset-md-3 mainPage">
       <Row className="mb-3">
@@ -64,6 +87,25 @@ function ArtistPage() {
           </div>
           <div className="pt-5 mb-5">
             <Row className="row" id="apiLoaded" />
+            {tracklist && (
+              <>
+                {tracklist.data.map(song => {
+                  return (
+                    <>
+                      <div class="col-sm-auto col-md-auto text-center mb-5">
+                        <a href="/album_page.html?id=340878">
+                          <img class="img-fluid" src={song.album.cover_big} alt="1" />
+                        </a>
+                        <p>
+                          <a href="#link">Track: {song.title}"</a>
+                          <a href="/album_page.html?id=340878">Album: {song.album.title}</a>
+                        </p>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            )}
           </div>
         </Col>
       </Row>
