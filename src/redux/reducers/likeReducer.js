@@ -9,12 +9,17 @@ export const likeReducer = createSlice({
   },
   reducers: {
     setLike: (state, action) => {
-      state.likedSongs = [...state.likedSongs, action.payload];
+      /* Con "CreateSlice" è possibile mutare lo stato direttamente perchè Redux Toolkit utilizza la libreria "immer" che "sotto il cofano" gestisce tutto in maniera immutabile.
+    
+      Link documentazione: https://redux-toolkit.js.org/usage/immer-reducers#immutable-updates-with-immer  */
+
+      state.likedSongs.push(action.payload);
     },
     removeLike: (state, action) => {
-      /* Con "CreateSlice" è possibile mutare lo stato direttamente perchè Redux Toolkit utilizza la libreria "immer" che "sotto il cofano" gestisce tutto in maniera inmutable.
-      Immer fa una copia  */
-      state.likedSongs = state.likedSongs.splice(action.payload, 1);
+      const index = state.likedSongs.indexOf(action.payload);
+      if (index !== -1) {
+        state.likedSongs.splice(index, 1);
+      }
     }
   }
 });
