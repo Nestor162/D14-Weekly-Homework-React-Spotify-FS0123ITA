@@ -16,6 +16,7 @@ export const likeReducer = createSlice({
       state.likedSongs.push(action.payload);
     },
     removeLike: (state, action) => {
+      /* Rimuovo l'elemento dall'array in base all' indice dello stesso */
       const index = state.likedSongs.indexOf(action.payload);
       if (index !== -1) {
         state.likedSongs.splice(index, 1);
