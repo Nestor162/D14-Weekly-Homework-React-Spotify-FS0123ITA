@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import NavbarBottom from "./NavbarBottom";
 import Sidebar from "./Sidebar";
@@ -43,17 +43,19 @@ function AlbumPage() {
           <Col md={3} className="pt-5 text-center" id="img-container">
             {album && (
               <div className="col-md-3 pt-5 text-center" id="img-container">
-                <img src={album.cover_big} class="card-img" alt="Album" />
+                <img src={album.cover_big} className="card-img" alt="Album" />
                 <div className="mt-4 text-center">
                   <p className="album-title">{album.title}</p>
                 </div>
                 <div className="text-center">
-                  <p className="artist-name">{album.artist.name}</p>
+                  <p className="artist-name" style={{ minWidth: "max-content" }}>
+                    {album.artist.name}
+                  </p>
                 </div>
-                <div class="mt-4 text-center">
-                  <button id="btnPlay" className="btn btn-success" type="button">
+                <div className="mt-4 text-center">
+                  <Button id="btnPlay" className="btn-success" type="button">
                     Play
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -64,11 +66,11 @@ function AlbumPage() {
                 {album &&
                   album.tracks.data.map(track => {
                     return (
-                      <div class="py-3 trackHover">
+                      <div className="py-3 trackHover">
                         <a href="#song" className="card-title trackHover px-3" style={{ color: "white" }}>
                           {track.title}
                         </a>
-                        <small class="duration" style={{ color: "white" }}>
+                        <small className="duration" style={{ color: "white" }}>
                           {track.duration}
                         </small>
                       </div>
