@@ -38,3 +38,55 @@
   display: inline-block;
   width: 14px;
 }
+
+/* POSIZIONAMENTO CARD SUL PLAYER */
+.song-card {
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.card-title,
+.card-text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .song-card {
+    right: 110px;
+  }
+  .card-title,
+  .card-text {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1380px) {
+  .song-card {
+    left: -8%;
+  }
+  .card-title,
+  .card-text {
+    display: block;
+  }
+}
+
+@media (min-width: 950px) {
+  .song-card {
+    right: 300px;
+  }
+  .card-title,
+  .card-text {
+    display: block;
+  }
+}
+
+@media (min-width: 1400px) {
+  .song-card {
+    right: 25%;
+  }
+  .card-title,
+  .card-text {
+    display: block;
+  }
+}

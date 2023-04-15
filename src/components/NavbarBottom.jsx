@@ -14,7 +14,29 @@ function NavbarBottom() {
   return (
     <Container fluid className="fixed-bottom bg-container pt-1">
       <Row>
-        <Col lg={10} className="offset-lg-2">
+        <Col lg={10} className="offset-lg-2 position-relative">
+          {currentSong.title && (
+            <div className="song-card position-absolute">
+              <div id="cardPlaying" className="card mb-3 text-light" style={{ maxWidth: "540px", margin: "auto" }}>
+                <div className="row g-0">
+                  <div className="col-md-1 mt-2">
+                    <img
+                      src={currentSong.album.cover_small}
+                      className="img-fluid rounded-start img-fluid"
+                      alt={currentSong.title}
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body pt-0 px-2">
+                      <strong className="card-title mb-0 mt-1">{currentSong.title}</strong>
+                      <p className="card-text">{currentSong.artist.name}</p>
+                      {/* <p className="card-text">{currentSong.album.title}</p> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           <Row>
             <Col xs={6} md={4} lg={2} className="offset-3 offset-md-4 offset-lg-5 playerControls mt-1">
               <Row>
@@ -34,30 +56,6 @@ function NavbarBottom() {
                   <img src={Repeat} alt="shuffle" />
                 </a>
               </Row>
-              {currentSong.title && (
-                <div className="position-absolute" style={{ left: "245px", top: "0" }}>
-                  <div id="cardPlaying" className="card mb-3 text-light" style={{ maxWidth: "540px" }}>
-                    <div className="row g-0">
-                      <div className="col-md-4">
-                        <img
-                          src={currentSong.album.cover_small}
-                          className="img-fluid rounded-start img-fluid"
-                          alt={currentSong.title}
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <div className="card-body pt-0 px-1">
-                          <strong className="card-title">{currentSong.title}</strong>
-                          <p className="card-text">{currentSong.artist.name}</p>
-                          <p className="card-text">
-                            <small className="text-muted">{currentSong.album.title}</small>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </Col>
           </Row>
           <Row className="justify-content-center playBar py-3">
