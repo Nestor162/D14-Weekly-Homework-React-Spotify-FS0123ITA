@@ -15,3 +15,11 @@ img:hover {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.col img:hover {
+  filter: brightness(60%);
+}
+
+.img-container:hover .heartIcon {
+  display: block !important;
+}
