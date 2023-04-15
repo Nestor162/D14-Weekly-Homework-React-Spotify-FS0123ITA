@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import NavbarBottom from "./NavbarBottom";
 
 function ArtistPage() {
   const params = useParams();
@@ -100,8 +101,12 @@ function ArtistPage() {
                               <img class="img-fluid" src={song.album.cover_big} alt="1" />
                             </a>
                             <p>
-                              <a href="#link">Track: {song.title}"</a>
-                              <a href="/album_page.html?id=340878">Album: {song.album.title}</a>
+                              <div>
+                                <a href="#link"> Track: {song.title}</a>
+                              </div>
+                              <div>
+                                <Link to={`/album/${song.album.id}`}>Album: {song.album.title}</Link>
+                              </div>
                             </p>
                           </Col>
                         </>
@@ -114,6 +119,7 @@ function ArtistPage() {
           </Col>
         </Row>
       </Col>
+      <NavbarBottom />
     </>
   );
 }
