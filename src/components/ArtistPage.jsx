@@ -3,11 +3,15 @@ import { Button, Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import NavbarBottom from "./NavbarBottom";
+import { useDispatch } from "react-redux";
+import { setPlay } from "../redux/reducers/playReducer";
 
 function ArtistPage() {
   const params = useParams();
   const [artist, setArtist] = useState(null);
   const [tracklist, setTracklist] = useState(null);
+
+  const dispatch = useDispatch();
 
   const fetchArtistContent = async () => {
     try {
@@ -97,12 +101,20 @@ function ArtistPage() {
                       return (
                         <>
                           <Col xs={12} sm={6} md={4} className="text-center mb-5">
-                            <a href="/album_page.html?id=340878">
+                            <Link to={`/album/${song.album.id}`}>
                               <img class="img-fluid" src={song.album.cover_big} alt="1" />
-                            </a>
+                            </Link>
                             <p>
                               <div>
-                                <a href="#link"> Track: {song.title}</a>
+                                <a
+                                  href="#a"
+                                  onClick={() => {
+                                    dispatch(setPlay(song));
+                                  }}
+                                >
+                                  {" "}
+                                  Track: {song.title}
+                                </a>
                               </div>
                               <div>
                                 <Link to={`/album/${song.album.id}`}>Album: {song.album.title}</Link>
