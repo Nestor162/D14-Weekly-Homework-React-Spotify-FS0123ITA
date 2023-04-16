@@ -3,10 +3,15 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import NavbarBottom from "./NavbarBottom";
 import Sidebar from "./Sidebar";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { removeLike, setLike } from "../redux/reducers/likeReducer";
 
 function AlbumPage() {
   const params = useParams();
   const [album, setAlbum] = useState(null);
+  const dispatch = useDispatch();
+  const likedSongs = useSelector(state => state.likes.likedSongs);
 
   const fetchAlbumContent = async albumId => {
     try {
@@ -66,13 +71,47 @@ function AlbumPage() {
                 {album &&
                   album.tracks.data.map(track => {
                     return (
-                      <div className="py-3 trackHover">
-                        <a href="#song" className="card-title trackHover px-3" style={{ color: "white" }}>
-                          {track.title}
-                        </a>
-                        <small className="duration" style={{ color: "white" }}>
-                          {track.duration}
-                        </small>
+                      <div key={track.id} className="display-inline-block position-relative img-container">
+                        <div className="py-3 px-3 trackHover d-flex align-items-center justify-content-between">
+                          <a href="#song" className="card-title trackHover px-3" style={{ color: "white" }}>
+                            {track.title}
+                          </a>
+                          <small className="duration" style={{ color: "white" }}>
+                            {track.duration}
+                          </small>
+                        </div>
+                        {likedSongs.includes(track.id) ? (
+                          <HeartFill
+                            size={20}
+                            className="position-absolute heartIcon d-none"
+                            style={{
+                              bottom: "15px",
+                              right: "45px",
+                              stroke: "white",
+                              strokeWidth: "1.2",
+                              fill: "white",
+                              width: "24px"
+                            }}
+                            onClick={() => {
+                              dispatch(removeLike(track.id));
+                            }}
+                          />
+                        ) : (
+                          <Heart
+                            size={20}
+                            className="position-absolute heartIcon d-none"
+                            style={{
+                              bottom: "15px",
+                              right: "45px",
+                              stroke: "white",
+                              strokeWidth: "1.2",
+                              width: "24px"
+                            }}
+                            onClick={() => {
+                              dispatch(setLike(track.id));
+                            }}
+                          />
+                        )}
                       </div>
                     );
                   })}
