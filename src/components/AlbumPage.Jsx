@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import NavbarBottom from "./NavbarBottom";
 import Sidebar from "./Sidebar";
@@ -46,7 +46,7 @@ function AlbumPage() {
         </Row>
         <Row>
           <Col md={3} className="pt-5 text-center" id="img-container">
-            {album && (
+            {album ? (
               <div className="col-md-3 pt-5 text-center" id="img-container">
                 <img src={album.cover_big} className="card-img" alt="Album" />
                 <div className="mt-4 text-center">
@@ -62,6 +62,10 @@ function AlbumPage() {
                     Play
                   </Button>
                 </div>
+              </div>
+            ) : (
+              <div className="position-absolute top-50 start-50">
+                <Spinner variant="light" style={{ width: "90px", height: "90px" }} />
               </div>
             )}
           </Col>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import HomeCardList from "./HomeCardList";
+import { Spinner } from "react-bootstrap";
 
 function HomeContent({ query }) {
-  const [song, setSong] = useState([]);
+  const [song, setSong] = useState(null);
 
   const fetchHomeContent = async query => {
     try {
@@ -21,7 +22,17 @@ function HomeContent({ query }) {
     fetchHomeContent(query);
   }, [query]);
 
-  return <>{song && <HomeCardList song={song} />}</>;
+  return (
+    <>
+      {song ? (
+        <HomeCardList song={song} />
+      ) : (
+        <div className="mx-auto">
+          <Spinner />
+        </div>
+      )}
+    </>
+  );
 }
 
 export default HomeContent;

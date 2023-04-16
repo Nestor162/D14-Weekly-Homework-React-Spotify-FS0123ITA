@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Spinner } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import NavbarBottom from "./NavbarBottom";
@@ -69,12 +69,16 @@ function ArtistPage() {
         <Row>
           <Col xs={12} md={10} lg={10} className="mt-5">
             <div className="d-flex flex-column justify-content-center" id="button-container">
-              {artist && (
+              {artist ? (
                 <>
                   <img className="mx-auto mb-3" src={artist.picture_big} alt={artist.name}></img>
                   <h2 class="titleMain">{artist.name}</h2>
                   <div id="followers">{artist.nb_fan} followers</div>
                 </>
+              ) : (
+                <div className="position-absolute top-50 start-50">
+                  <Spinner variant="light" style={{ width: "90px", height: "90px" }} />
+                </div>
               )}
 
               <div className="buttonsWrappers d-flex justify-content-center">
